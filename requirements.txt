@@ -57,6 +57,7 @@ schedule==1.2.2
 six==1.17.0
 smmap==5.0.3
 soupsieve==2.8.4
+sqlite_web==0.7.2
 starlette==1.2.1
 streamlit==1.58.0
 tabulate==0.10.0

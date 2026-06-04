@@ -8,7 +8,7 @@ logs/
 *.log
 nohup.out
 
-cryptos.db
+
 *.sqlite
 *.sqlite3
 
