@@ -186,14 +186,24 @@ def vigilar_todos():
     guardar_estado_senales(estado_nuevo_senales)
     logging.info("Vigilancia intradia multi-ticker completada.\n")
 
-# ================= CONFIGURACION DEL SCHEDULER =================
-schedule.every(INTERVALO_MINUTOS).minutes.do(vigilar_todos)
-
+# ================= CONFIGURACION DEL AGENTE =================
 logging.info(f"🟢 Agente intradia multi-ticker iniciado. Revisando cada {INTERVALO_MINUTOS} minutos.")
 logging.info(f"Usando base de datos: {DB_PATH}")
 logging.info(f"Intervalo de datos intradia: {INTERVALO_DATOS}")
-vigilar_todos()
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+def procesar_todos_tickers():
+    """Ejecuta el proceso principal de vigilancia para todos los tickers una vez."""
+    vigilar_todos()
+
+
+if __name__ == "__main__":
+    import sys
+    run_once = '--once' in sys.argv
+    if run_once:
+        # Ejecutar una sola vez el proceso principal
+        procesar_todos_tickers()
+    else:
+        # Modo bucle: ejecutar repetidamente cada INTERVALO_MINUTOS
+        while True:
+            procesar_todos_tickers()
+            time.sleep(INTERVALO_MINUTOS * 60)
