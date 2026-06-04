@@ -1,0 +1,11 @@
+symbol,name,upper,lower,active
+BINANCE:BTCUSDT,Bitcoin (Binance),73600,73000,True
+BINANCE:ETHUSDT,Ethereum (Binance),2100,1900,True
+COINBASE:BTCUSD,Bitcoin (Coinbase),73600,73000,False
+BINANCE:BNBUSDT,BNB / Tether,73600,73000,False 
+BINANCE:SOLUSDT,Solana / Tether,73600,73000,False
+BINANCE:XRPUSDT,Ripple / Tether,73600,73000,False
+BINANCE:ADAUSDT,Cardano / Tether,73600,73000,False
+BINANCE:LINKUSDT,Chainlink / Tether,73600,73000,False
+BINANCE:DOGEUSDT,Dogecoin / Tether,73600,73000,False
+BINANCE:SOLBTC,Solana / Bitcoin,73600,73000,False
