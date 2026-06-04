@@ -114,3 +114,6 @@ pip install pandas numpy yfinance requests schedule
 - `python vigilante_multiticker.py`: vigila múltiples tickers con señales diarias.
 - `python vigilante_intradia_multiticker.py`: vigila múltiples tickers con señales intradía de 15 minutos.
 - `python test.py`: prueba la función de indicadores avanzados.
+
+# vigilante
+
