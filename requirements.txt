@@ -69,3 +69,4 @@ uvicorn==0.48.0
 websockets==16.0
 yfinance==1.4.1
 sqlite_web==0.7.2
+scikit-learn
