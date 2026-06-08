@@ -13,8 +13,8 @@ from logging.handlers import TimedRotatingFileHandler
 from indicador_avanzado import calcular_indicadores_y_senal
 from soporte_resistencia import normalizar_columnas_ohlcv
 
-# Cargar variables de entorno
-load_dotenv()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # ================= CONFIGURACION INTRADIA =================
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
@@ -65,8 +65,15 @@ def enviar_telegram(mensaje):
         url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
         payload = {"chat_id": TELEGRAM_CHAT_ID, "text": mensaje}
         try:
-            requests.post(url, json=payload, timeout=5)
-            logging.info(f"Alerta enviada: {mensaje[:50]}...")
+            response = requests.post(url, json=payload, timeout=10)
+            try:
+                response_data = response.json()
+            except ValueError:
+                response_data = response.text
+            if response.ok and isinstance(response_data, dict) and response_data.get("ok"):
+                logging.info(f"Alerta enviada: {mensaje[:50]}...")
+            else:
+                logging.error(f"Error en Telegram: status={response.status_code} response={response_data}")
         except Exception as e:
             logging.error(f"Error en Telegram: {e}")
     threading.Thread(target=_send, daemon=True).start()
